@@ -1,12 +1,4 @@
 <form [formGroup]="myReactiveForm">
-  <!-- <p>Qué quieres haser?</p> -->
-<!-- <label formArrayName = "trabajos" *ngFor = " let trabajo of trabajosFormArray.controls; let i = index">
-  <input type="checkbox" [formControlName] = "i">
-  {{trabajos[i].nombre}}
-  <div class="panel" *ngIf="i===0">
-    <app-panel></app-panel>
-  </div>
-</label> -->
 <div class="form-group">
   <label for="trabajo">Qué quieres haser?</label>
   <div *ngFor= "let trabajo of trabajos; let i = index">
@@ -14,23 +6,11 @@
       <input type="checkbox" [value] = "trabajo.precio" (change) = "onCheckboxChange($event)">
       {{trabajo.nombre}}
       <div class="panel" *ngIf="i===0 && isChecked">
-        <app-panel></app-panel>
+        <app-panel (inputValues) = 'inputsResult($event)'></app-panel>
       </div>
     </label>
   </div>
 </div>
 
-
-
-
-  <!-- <input type="checkbox" id="web" formControlName= "web" #web [(ngModel)]="isChecked"/>
-  <label for="web">Una página web (500€)</label>
-<br>
-  <input type="checkbox" id="seo" formControlName= "seo" #seo [(ngModel)]="isChecked"/>
-  <label for="seo">Una consultoria SEO (300€)</label>
-<br>
-  <input type="checkbox" id="ads" formControlName= "ads" #ads [(ngModel)]="isChecked"/>
-  <label for="ads">Una campanya de Google Ads (200€)</label>
-  <br> -->
-  <p id="preu" >Preu: {{getPrise()}} €</p>
+  <p id="preu" >Preu: {{precio}} €</p>
 </form>

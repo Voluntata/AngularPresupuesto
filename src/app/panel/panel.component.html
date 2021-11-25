@@ -1,1 +1,7 @@
-<p>panel works!</p>
+<form class="container" [formGroup]="panelForm">
+  <label> Número de paginas
+  <input type="number" name="" id="" formControlName="paginas" #pagInput />{{OnInput()}}</label>
+  <br>
+  <label> Número de idiomas
+  <input type="number" name="" id="" formControlName="idiomas" #lgInput /></label>
+</form>
