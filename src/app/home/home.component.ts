@@ -45,11 +45,15 @@ public precio:number = 0;
   ngOnInit(): void {
 
   }
+
   inputsResult(value:number) {
-    console.log(value);
+  if(value>0){
+   this.precio = value+ this.precio;}
+     //this.precio =value+ this.precio;
+
+else{return}
 }
+
+
+
 }
-
-
-
-
