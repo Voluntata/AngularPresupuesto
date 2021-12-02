@@ -1,7 +1,33 @@
+<body>
+
+
 <form class="container" [formGroup]="panelForm">
+  <!-- borrar luego -->
+  {{blockPrecios()}}
   <label> Número de paginas
-  <input type="number" name="" id="" formControlName="paginas" #pagInput />{{OnInput()}}</label>
+    <button (click)="increment(pagInput)">+</button>
+    <input type="number" formControlName="paginas" #pagInput [value]="inputValue" />
+    <button (click)="decrement(pagInput)">-</button>
+    <button class="btn ms-1 h-1 w-1" (click) = "modalUno(contentUno)"> 🛈 </button>
+</label>
   <br>
   <label> Número de idiomas
-  <input type="number" name="" id="" formControlName="idiomas" #lgInput />{{OnInput()}}</label>
+    <button (click)="increment(lgInput)">+</button>
+    <input type="number" name="" id="" formControlName="idiomas" #lgInput [value]="inputValue" />
+    <button (click)="decrement(lgInput)">-</button>
+    <button class="btn ms-1" (click) = "modalUno(contentDos)" > 🛈 </button>
+</label>
 </form>
+
+<ng-template #contentUno>
+  <div class="modal-body">
+    <p>En este componenete debe indicar el numero de las paginas</p>
+  </div>
+</ng-template>
+
+<ng-template #contentDos>
+  <div class="modal-body">
+    <p>En este componenete debe indicar el numero de las idiomas</p>
+  </div>
+</ng-template>
+</body>

@@ -1,37 +1,82 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+
+import { CalculateService } from '../calculate.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css']
+  styleUrls: ['./panel.component.css'],
 })
 export class PanelComponent implements OnInit {
-@Output() inputValues = new EventEmitter();
-inputValue:number =  0;
+  @Input() precio = 0; //recibir datos pe precio de checkbox de Home
+  @Output() inputValues = new EventEmitter(); // emitir datos a Home
+  inputValue: number = 1;
 
-  panelForm: FormGroup
-  constructor(private fb: FormBuilder) {
+  calculateService = new CalculateService();
+  panelForm: FormGroup;
+  constructor(private fb: FormBuilder, private ModalUno: NgbModal) {
     this.panelForm = this.fb.group({
-      'paginas': new FormControl(0, [Validators.required]),
-      'idiomas': new FormControl(0, [Validators.required]),
+      paginas: new FormControl(1, [Validators.required]),
+      idiomas: new FormControl(1, [Validators.required]),
     });
   }
 
- @ViewChild('pagInput', {static: true})
+  @ViewChild('pagInput', { static: true }) // igual a getElementBy ID
   pagInput!: ElementRef;
- @ViewChild('lgInput', {static: true})
+  @ViewChild('lgInput', { static: true })
   lgInput!: ElementRef;
 
- OnInput(){
-let pagValue:number = parseInt(this.pagInput.nativeElement.value);
-let lgValue:number = parseInt(this.lgInput.nativeElement.value);
-this.inputValue = pagValue + lgValue;
-this.inputValues.emit(this.inputValue);
-//console.log(this.inputValue)
- }
-
-  ngOnInit(): void {
+  increment(element: any) {
+     //incrementar valor de input y añadir este valor a precio final
+    if (element.value >= 1) {
+      element.inputValue = element.value++;
+      console.log(element.inputValue);
+    }
   }
 
+  decrement(element: any) {
+    // disminuir valor de input y añadir este valor a precio final
+    if (element.value > 1) {
+      element.inputValue = element.value--;
+    }
+      else {
+      element.inputValue = 1;
+    }
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  blockPrecios() {
+    // calcula el precio de la web mediante la formula
+    const pageValue = parseInt(this.pagInput.nativeElement.value);
+    const lgValue = parseInt(this.lgInput.nativeElement.value);
+    let blockPrecio = this.calculateService.precioWeb(pageValue, lgValue);
+    //console.log(blockPrecio);
+    this.inputValues.emit(blockPrecio);
+    return blockPrecio;
+  }
+
+  modalUno(contenido:any){
+
+      this.ModalUno.open(contenido,{size:'xl', centered: true});
+
+
+  }
 }

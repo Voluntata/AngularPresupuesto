@@ -1,8 +1,9 @@
 
-import { Component, ElementRef, Renderer2, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Trabajo } from '../interface';
+import { CalculateService } from '../calculate.service';
 
 @Component({
   selector: 'app-home',
@@ -12,33 +13,31 @@ import { Trabajo } from '../interface';
 export class HomeComponent implements OnInit {
   myReactiveForm: FormGroup;
 
-  trabajos: Trabajo[] = [
-    { precio: 500, nombre: "Una página web (500€)"},
-    { precio: 300, nombre: "Una consultoria SEO (300€)" },
-    { precio: 200, nombre: "Una campanya de Google Ads (200€)" }
-  ];
+  calculateService = new CalculateService();
+  trabajos: Trabajo[] = this.calculateService.getTrabajos();
 
 
-public isChecked:boolean = false;
-public precio:number = 0;
+  public precio: number = 0;
+  public total: number = 0;
   constructor(private router: Router, private fb: FormBuilder) {
     this.myReactiveForm = this.fb.group({
       result: this.fb.array([], Validators.required)
     });
 
   }
-  onCheckboxChange(e:any) {
 
-    if(e.target.checked){
-      let value:number = parseInt(e.target.value);
-      this.isChecked = true;
-      this.precio = this.precio +value;
+
+  doCheckboxCheck(index: number): void{ //añadir y restar valor si checkbox is checked
+
+    this.trabajos[index].isChecked = !this.trabajos[index].isChecked;
+    if (this.trabajos[index].isChecked) {
+      let value: number = this.trabajos[index].precio;
+       this.precio = this.calculateService.incrementTotal(value)
 
     }
-    else{
-      let value:number = parseInt(e.target.value);
-      this.precio = this.precio - value;
-      this.isChecked = false;
+    if (!this.trabajos[index].isChecked) {
+      let value: number = this.trabajos[index].precio;
+      this.precio = this.calculateService.decrementTotal(value)
     }
   }
 
@@ -46,14 +45,26 @@ public precio:number = 0;
 
   }
 
-  inputsResult(value:number) {
-  if(value>0){
-   this.precio = value+ this.precio;}
-     //this.precio =value+ this.precio;
+  inputsResult(value: number)  { // recibir datos de PanelComponent
+if (value>0){
+//console.log(" total = " + value)
 
-else{return}
+   this.total =value;}
+ else{
+   this.total = 0;
+ }
+
+  }
+
+result(){
+
+ this.total = this.total + this.precio ;
+  console.log(this.total + " = total")
+  return this.total;
 }
 
-
+volver(){
+  this.router.navigateByUrl('/landing');
+};
 
 }

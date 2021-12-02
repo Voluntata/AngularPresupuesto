@@ -1,9 +1,16 @@
+body{
+  position: relative;
+}
+
 .container{
   height: auto;
-  width: 350px;
+  width: 500px;
   border : 2px solid black;
   border-radius: 10px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 .container label{
   margin: 5px;
@@ -11,4 +18,10 @@
 }
 .container input{
   margin: 5px;
+  width:50px;
+}
+
+.modal{
+  position: absolute;
+  bottom: 0;
 }
