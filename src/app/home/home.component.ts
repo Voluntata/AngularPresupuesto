@@ -1,5 +1,5 @@
 
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Trabajo } from '../interface';
@@ -26,13 +26,13 @@ export class HomeComponent implements OnInit {
 
   }
 
-
-  doCheckboxCheck(index: number): void{ //añadir y restar valor si checkbox is checked
+//añadir y restar valor si checkbox is checked
+  doCheckboxCheck(index: number): void {
 
     this.trabajos[index].isChecked = !this.trabajos[index].isChecked;
     if (this.trabajos[index].isChecked) {
       let value: number = this.trabajos[index].precio;
-       this.precio = this.calculateService.incrementTotal(value)
+      this.precio = this.calculateService.incrementTotal(value)
 
     }
     if (!this.trabajos[index].isChecked) {
@@ -45,26 +45,22 @@ export class HomeComponent implements OnInit {
 
   }
 
-  inputsResult(value: number)  { // recibir datos de PanelComponent
-if (value>0){
-//console.log(" total = " + value)
-
-   this.total =value;}
- else{
-   this.total = 0;
- }
+  inputsResult(value: number) { // recibir datos de PanelComponent
+    if (value > 0) {
+      this.total = value;
+    }
+    else {
+      this.total = 0;
+    }
 
   }
+// obtener el precio final
+  result() {
+    return this.calculateService.precioTotal(this.total, this.precio)
+  }
 
-result(){
-
- this.total = this.total + this.precio ;
-  console.log(this.total + " = total")
-  return this.total;
-}
-
-volver(){
-  this.router.navigateByUrl('/landing');
-};
+  volver() {
+    this.router.navigateByUrl('/landing');
+  };
 
 }

@@ -42,10 +42,10 @@ export class PanelComponent implements OnInit {
   lgInput!: ElementRef;
 
   increment(element: any) {
-     //incrementar valor de input y añadir este valor a precio final
+    //incrementar valor de input y añadir este valor a precio final
     if (element.value >= 1) {
       element.inputValue = element.value++;
-      console.log(element.inputValue);
+      //console.log(element.inputValue);
     }
   }
 
@@ -54,13 +54,12 @@ export class PanelComponent implements OnInit {
     if (element.value > 1) {
       element.inputValue = element.value--;
     }
-      else {
+    else {
       element.inputValue = 1;
     }
   }
 
   ngOnInit(): void {
-
   }
 
   blockPrecios() {
@@ -68,15 +67,19 @@ export class PanelComponent implements OnInit {
     const pageValue = parseInt(this.pagInput.nativeElement.value);
     const lgValue = parseInt(this.lgInput.nativeElement.value);
     let blockPrecio = this.calculateService.precioWeb(pageValue, lgValue);
-    //console.log(blockPrecio);
-    this.inputValues.emit(blockPrecio);
+
+    if (blockPrecio > 0) {
+      //console.log("emitted" + blockPrecio);
+      this.inputValues.emit(blockPrecio);
+    }
+    if (blockPrecio === 30) {
+      this.inputValues.emit(0);
+    }
     return blockPrecio;
   }
 
-  modalUno(contenido:any){
-
-      this.ModalUno.open(contenido,{size:'xl', centered: true});
-
-
+  //mostrar el contenido de modal
+  modalUno(contenido: any) {
+    this.ModalUno.open(contenido, { size: 'xl', centered: true });
   }
 }

@@ -6,27 +6,36 @@ import { Trabajo } from './interface';
 })
 export class CalculateService {
   trabajos: Trabajo[] = [
-    { precio: 500, nombre: "Una página web (500€)", isChecked: false},
+    { precio: 500, nombre: "Una página web (500€)", isChecked: false },
     { precio: 300, nombre: "Una consultoria SEO (300€)", isChecked: false },
     { precio: 200, nombre: "Una campanya de Google Ads (200€)", isChecked: false }
   ];
 
-  getTrabajos(){
+  getTrabajos() {
     return this.trabajos;
   }
   constructor() { }
 
- //precioWEb = 500 + paginas*idiomas*30
-public total: number = 0;
- incrementTotal(value:number){
-return this.total = this.total  + value;
- }
- decrementTotal(value:number){
-  return this.total = this.total  - value;
-   }
+  //precioWEb = 500 + paginas*idiomas*30
+  public total: number = 0;
+  incrementTotal(value: number) {
+    return this.total = this.total + value;
+  }
+  decrementTotal(value: number) {
+    return this.total = this.total - value;
+  }
 
-public precioWebTotal:number = 0;
- precioWeb(pages:number, idiomas:number){
-return this.precioWebTotal = pages*idiomas*30;
- }
+  public precioWebTotal: number = 0;
+  precioWeb(pages: number, idiomas: number) {
+    if (this.precioWebTotal === 30) {
+      return this.precioWebTotal = 0;
+    }
+    else { return this.precioWebTotal = pages * idiomas * 30; }
+
+  }
+
+  public precioResult: number = 0;
+  precioTotal(precio: number, webPrecio: number) {
+    return this.precioResult = precio + webPrecio;
+  }
 }

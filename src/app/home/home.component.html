@@ -8,13 +8,13 @@
         <input type="checkbox" [value]="trabajo.precio" [checked]="trabajo.isChecked" (click)="doCheckboxCheck(i)">
         {{trabajo.nombre}}
         <div class="panel" *ngIf="i===0 && trabajo.isChecked">
-          <app-panel [precio]='precio' (inputValues)='inputsResult($event)'></app-panel>
+          <app-panel [precio]='precio' (inputValues)='inputsResult($event)' ></app-panel>
         </div>
       </label>
     </div>
   </div>
 
-  <p id="preu">Preu: {{precio}} {{result()}} €</p>
+  <p id="preu">Preu: {{result()}} €</p>
 </form>
 <button (click)="volver()" class="ms-3">Volver</button>
 
