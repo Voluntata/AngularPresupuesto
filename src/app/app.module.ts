@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
 import { LandingComponent } from './landing/landing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PressupostListComponent } from './pressupost-list/pressupost-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     PanelComponent,
     LandingComponent,
+    PressupostListComponent,
 
   ],
   imports: [

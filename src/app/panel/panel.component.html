@@ -3,7 +3,7 @@
 
 <form class="container" [formGroup]="panelForm">
   <!-- borrar luego -->
-  <!-- {{blockPrecios()}} -->
+  <div class="d-none">{{blockPrecios()}} </div>
   <label> Número de paginas
     <button (click)="increment(pagInput)">+</button>
     <input type="number" formControlName="paginas" #pagInput [value]="inputValue" />

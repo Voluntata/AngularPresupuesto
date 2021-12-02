@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Trabajo } from '../interface';
 import { CalculateService } from '../calculate.service';
@@ -21,7 +21,10 @@ export class HomeComponent implements OnInit {
   public total: number = 0;
   constructor(private router: Router, private fb: FormBuilder) {
     this.myReactiveForm = this.fb.group({
-      result: this.fb.array([], Validators.required)
+
+      pressName: new FormControl('', [Validators.required]),
+      client: new FormControl('', [Validators.required]) ,
+      result: this.fb.array([], [Validators.required]),
     });
 
   }

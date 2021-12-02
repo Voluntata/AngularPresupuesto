@@ -60,6 +60,7 @@ export class PanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   blockPrecios() {

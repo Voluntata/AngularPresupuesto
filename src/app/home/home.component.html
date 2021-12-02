@@ -1,24 +1,21 @@
-
-
 <form [formGroup]="myReactiveForm" class="m-3">
-  <div class="form-group">
-    <label for="trabajo">Qué quieres haser?</label>
-    <div *ngFor="let trabajo of trabajos; let i = index">
+  <label for="pressName"> Pressupuesto <input type="text" name="pressName" id="" formControlName="pressName"/></label>
+  <br>
+  <label for="cliente"> Cliente <input type="text" name="cliente" id="" formControlName="cliente"/> </label>
+  <br>
+
+    <p>Qué quieres hacer?</p>
+    <div *ngFor="let trabajo of trabajos; let i = index" formArrayName="result">
       <label>
         <input type="checkbox" [value]="trabajo.precio" [checked]="trabajo.isChecked" (click)="doCheckboxCheck(i)">
         {{trabajo.nombre}}
         <div class="panel" *ngIf="i===0 && trabajo.isChecked">
-          <app-panel [precio]='precio' (inputValues)='inputsResult($event)' ></app-panel>
-        </div>
-      </label>
-    </div>
-  </div>
+          <app-panel [precio]='precio' (inputValues)='inputsResult($event)'></app-panel>
 
-  <p id="preu">Preu: {{result()}} €</p>
+        </div>
+ </label>
+     </div>
+     <p id="preu">Preu: {{result()}} €</p>
+
 </form>
 <button (click)="volver()" class="ms-3">Volver</button>
-
-
-
-
-
