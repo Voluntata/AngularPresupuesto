@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
 import { LandingComponent } from './landing/landing.component';
-import { PressupostListComponent } from './pressupost-list/pressupost-list.component';
+import { PressupostListComponent } from './pressupostList/pressupostList.component';
 
 
 

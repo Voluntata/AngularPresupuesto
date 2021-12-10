@@ -1,21 +1,21 @@
 <body>
 
 
-<form class="container" [formGroup]="panelForm">
+<form class="input-group mb-3 mt-3 p-3 d-flex flex-column flex-wrap border border-2 border-dark rounded" [formGroup]="panelForm">
   <!-- borrar luego -->
   <div class="d-none">{{blockPrecios()}} </div>
-  <label> Número de paginas
-    <button (click)="increment(pagInput)">+</button>
-    <input type="number" formControlName="paginas" #pagInput [value]="inputValue" />
-    <button (click)="decrement(pagInput)">-</button>
-    <button class="btn ms-1 h-1 w-1" (click) = "modalUno(contentUno)"> 🛈 </button>
+  <label class="d-flex flex-nowrap"> Número de paginas
+    <button (click)="increment(pagInput)" class="btn btn-secondary">+</button>
+    <input type="number" formControlName="paginas" #pagInput [value]="inputValue"  class="form-control-xs m-1 w-1 "/>
+    <button (click)="decrement(pagInput)" class="btn btn-secondary">-</button>
+    <button class="btn ms-1 fs-1" (click) = "modalUno(contentUno)"> 🛈 </button>
 </label>
   <br>
-  <label> Número de idiomas
-    <button (click)="increment(lgInput)">+</button>
-    <input type="number" name="" id="" formControlName="idiomas" #lgInput [value]="inputValue" />
-    <button (click)="decrement(lgInput)">-</button>
-    <button class="btn ms-1" (click) = "modalUno(contentDos)" > 🛈 </button>
+  <label class="d-flex flex-nowrap "> Número de idiomas
+    <button (click)="increment(lgInput)" class="btn btn-secondary">+</button>
+    <input type="number" name="" id="" formControlName="idiomas" #lgInput [value]="inputValue"  class="form-control-xs m-1"/>
+    <button (click)="decrement(lgInput)" class="btn btn-secondary">-</button>
+    <button class="btn ms-1 fs-1" (click) = "modalUno(contentDos)" > 🛈 </button>
 </label>
 </form>
 

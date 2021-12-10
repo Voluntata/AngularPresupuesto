@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PressupostListComponent } from './pressupost-list.component';
+import { PressupostListComponent } from './pressupostList.component';
 
 describe('PressupostListComponent', () => {
   let component: PressupostListComponent;

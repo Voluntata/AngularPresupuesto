@@ -1,21 +1,30 @@
-<form [formGroup]="myReactiveForm" class="m-3">
-  <label for="pressName"> Pressupuesto <input type="text" name="pressName" id="" formControlName="pressName"/></label>
-  <br>
-  <label for="cliente"> Cliente <input type="text" name="cliente" id="" formControlName="cliente"/> </label>
-  <br>
 
-    <p>Qué quieres hacer?</p>
-    <div *ngFor="let trabajo of trabajos; let i = index" formArrayName="result">
-      <label>
-        <input type="checkbox" [value]="trabajo.precio" [checked]="trabajo.isChecked" (click)="doCheckboxCheck(i)">
+<div class="container d-flex flex-row justify-content-between p-3">
+  <div class="left">
+<form [formGroup]="myReactiveForm" class="m-3" (ngSubmit) = "guardar()">
+<label for="pressName" class="col-form-label d-flex "> Pressupuesto <input  class="form-control ms-2" type="text" name="pressName" id="" formControlName="pressName"/></label>
+<br>
+<label for="cliente" class="col-form-label d-flex"> Cliente <input  class="form-control ms-2" type="text" name="cliente" id="" formControlName="cliente"/> </label>
+<br>
+
+    <p class="fw-bold">Qué quieres hacer?</p>
+    <div *ngFor="let trabajo of trabajos; let i = index" formArrayName="formArray">
+      <label class="form-check-label m-2">
+        <input type="checkbox" [value]="trabajo.precio" [checked]="trabajo.isChecked" (click)="doCheckboxCheck(i)" class="form-check-input">
         {{trabajo.nombre}}
         <div class="panel" *ngIf="i===0 && trabajo.isChecked">
-          <app-panel [precio]='precio' (inputValues)='inputsResult($event)'></app-panel>
+          <app-panel [precio]='precio' (inputValues)='inputsResult($event)'  ></app-panel>
 
         </div>
  </label>
      </div>
-     <p id="preu">Preu: {{result()}} €</p>
-
+     <p id="preu" class="fw-bold m-3">Preu: {{result()}} €</p>
+     <button class="btn btn-dark">Guardar</button>
 </form>
-<button (click)="volver()" class="ms-3">Volver</button>
+<button (click)="volver()" class="ms-3 btn btn-outline-secondary">Volver</button>
+</div>
+<div class="right">
+<app-pressupostList [budgets] = "budgets" ></app-pressupostList>
+</div>
+
+</div>

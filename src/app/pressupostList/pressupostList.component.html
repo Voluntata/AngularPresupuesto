@@ -1,0 +1,20 @@
+
+<div class="m-3">
+<label for="" class="col-form-label"><input (keyup)="keyUp($event)"  type="text" name="" id="buscador" placeholder=" 🔎︎ Buscar" #buscar class="form-control"></label>
+<!-- <button (click)="buscarBtn()" class= " btn btn-outline-dark m-3">🔎︎</button> -->
+<div id="buscarRes" class="m-3"></div>
+
+<div *ngFor="let budget of sortBudgets; let i = index" >
+
+
+ <p>Pressupuesto: {{budget.pressupuesto}}, cliente: {{budget.cliente}}, fecha: {{budget.fecha | date}} , {{budget.web}}, paginas: {{budget.paginas}},idiomas: {{budget.idiomas}}, {{budget.seo}}, {{budget.ads}}, total: {{budget.total}} </p>
+
+
+</div>
+
+<button (click)="alpSort()" class="btn m-2 btn-outline-primary ">Alphabet</button>
+<button (click)="dateSort()" class="btn m-2 btn-outline-success ">Data</button>
+<button (click)="reset()" class="btn m-2 btn-outline-warning ">Reset</button>
+</div>
+
+

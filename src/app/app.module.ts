@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
 import { LandingComponent } from './landing/landing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PressupostListComponent } from './pressupost-list/pressupost-list.component';
+import { PressupostListComponent } from './pressupostList/pressupostList.component';
 
 @NgModule({
   declarations: [

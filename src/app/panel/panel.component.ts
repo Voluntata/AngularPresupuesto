@@ -46,6 +46,7 @@ export class PanelComponent implements OnInit {
     if (element.value >= 1) {
       element.inputValue = element.value++;
       //console.log(element.inputValue);
+
     }
   }
 
@@ -65,17 +66,12 @@ export class PanelComponent implements OnInit {
 
   blockPrecios() {
     // calcula el precio de la web mediante la formula
+
     const pageValue = parseInt(this.pagInput.nativeElement.value);
     const lgValue = parseInt(this.lgInput.nativeElement.value);
-    let blockPrecio = this.calculateService.precioWeb(pageValue, lgValue);
 
-    if (blockPrecio > 0) {
-      //console.log("emitted" + blockPrecio);
-      this.inputValues.emit(blockPrecio);
-    }
-    if (blockPrecio === 30) {
-      this.inputValues.emit(0);
-    }
+    let blockPrecio = [pageValue, lgValue];
+    this.inputValues.emit(blockPrecio);
     return blockPrecio;
   }
 
