@@ -86,8 +86,8 @@ export class HomeComponent implements OnInit {
     newBudget.web = (this.trabajos[0].isChecked)? "WEB": " ";
     newBudget.seo = (this.trabajos[1].isChecked)? "SEO": " ";
     newBudget.ads = (this.trabajos[2].isChecked)? "ADS": " ";
-    newBudget.paginas = this.pagInput;
-    newBudget.idiomas = this.lgInput;
+    newBudget.paginas = (this.trabajos[0].isChecked)? this.pagInput : 0;
+    newBudget.idiomas = (this.trabajos[0].isChecked)? this.lgInput: 0;
     newBudget.fecha = Date.now();
     newBudget.total = this.result();
 
