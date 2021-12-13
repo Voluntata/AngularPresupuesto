@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+   // this.router.navigate(['/homePage'],{ queryParams: { pressupuesto: 'uno', web: 'true' } });
   }
 
 

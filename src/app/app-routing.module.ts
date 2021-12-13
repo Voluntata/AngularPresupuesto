@@ -13,6 +13,7 @@ const routes: Routes = [
 {path: "panel", component: PanelComponent},
 {path: 'homePage', component: HomeComponent},
 {path: 'pressupuesto', component: PressupostListComponent},
+{path: 'homePage/:nombre', component: HomeComponent},
 {path: '**', redirectTo: '/landing'},
 ];
 
